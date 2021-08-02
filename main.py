@@ -24,10 +24,10 @@ class Application(tk.Frame):
 
         # frame Widget(Frame)を親要素として、FigureCanvasTkAggを宣言する。
         self.canvas = FigureCanvasTkAgg(fig, canvasFrame)
-        # matplotlibライブラリを利用して作成したグラフを、tkinterのWidgetとする。
+        # Matplotlibライブラリを利用して作成したグラフを、tkinterのWidgetとする。
         # Widgetについて : https://kuroro.blog/python/3IA9Mk6O9oBAniXsvSWU/
         tmp = self.canvas.get_tk_widget()
-        # frame Widget(Frame)を親要素として、matplotlibライブラリを利用して作成したグラフを、どのように配置するのか?
+        # frame Widget(Frame)を親要素として、Matplotlibライブラリを利用して作成したグラフを、どのように配置するのか?
         # packについて : https://kuroro.blog/python/UuvLfIBIEaw98BzBZ3FJ/
         tmp.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
@@ -57,7 +57,7 @@ class Application(tk.Frame):
 
         self.draw_plot()
 
-    # Tkinter内へmatplotlibライブラリで作成したグラフの描画を行う。
+    # Tkinter内へMatplotlibライブラリで作成したグラフの描画を行う。
     # リサジュー図形について : https://kagakunojikan.net/math/lissajous_figure_and_irrational_number/
     def draw_plot(self, event=None):
         # scale Widgetの値を取得する。
@@ -82,7 +82,7 @@ class Application(tk.Frame):
 # Tkinter初学者参考 : https://docs.python.org/ja/3/library/tkinter.html#a-simple-hello-world-program
 if __name__ == "__main__":
     ################################################
-    # <matplotlibの初期設定>
+    # <Matplotlibの初期設定>
     # 400px x 400pxのグラフを作成する。
     # 参考 : https://analytics-note.xyz/programming/matplotlib-figsize-dpi/
     fig = Figure(figsize=(4, 4), dpi=100)
