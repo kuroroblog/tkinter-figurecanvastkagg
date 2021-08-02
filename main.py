@@ -58,6 +58,7 @@ class Application(tk.Frame):
         self.draw_plot()
 
     # Tkinter内へmatplotlibライブラリで作成したグラフの描画を行う。
+    # リサジュー図形について : https://kagakunojikan.net/math/lissajous_figure_and_irrational_number/
     def draw_plot(self, event=None):
         # scale Widgetの値を取得する。
         # v = self.x_scale.get()
