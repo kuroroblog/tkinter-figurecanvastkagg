@@ -24,48 +24,46 @@ class Application(tk.Frame):
 
         # frame Widget(Frame)を親要素として、FigureCanvasTkAggを宣言する。
         self.canvas = FigureCanvasTkAgg(fig, canvasFrame)
-        # Matplotlibライブラリを利用して作成したグラフを、tkinterのWidgetとする。
+        # Matplotlibライブラリを利用して作成したグラフを、TkinterのWidgetとする。
         # Widgetについて : https://kuroro.blog/python/3IA9Mk6O9oBAniXsvSWU/
         tmp = self.canvas.get_tk_widget()
-        # frame Widget(Frame)を親要素として、Matplotlibライブラリを利用して作成したグラフを、どのように配置するのか?
+        # frame Widget(Frame)を親要素として、Matplotlibライブラリを利用して作成したグラフを、どのように表示するのか?
         # packについて : https://kuroro.blog/python/UuvLfIBIEaw98BzBZ3FJ/
         tmp.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
-        # # frame Widget(Frame)を親要素として、scale Widgetを作成する。
-        # # from_ : scale Widgetの値に下限を設定。
-        # # to : scale Widgetの値に上限を設定。
-        # # resolution : scale Widgetの値更新の大きさを設定。
-        # # orient : scale Widgetの表示方向を設定。水平方向。
-        # # command : scale Widgetの値が変更された場合に、実行する関数を設定。self.draw_plotとする。
-        # # Scaleについて : https://kuroro.blog/python/DUvG7YaE2i6jLwCxdPXJ/
-        # self.x_scale = tk.Scale(controlFrame, from_=1.0, to=10.0, resolution=0.01, orient=tk.HORIZONTAL, command=self.draw_plot)
-        # # frame Widget(Frame)を親要素として、scale Widgetをどのように配置するのか?
-        # # packについて : https://kuroro.blog/python/UuvLfIBIEaw98BzBZ3FJ/
-        # self.x_scale.pack(anchor=tk.NW)
+        # frame Widget(Frame)を親要素として、scale Widgetを作成する。
+        # from_ : scale Widgetの値に下限を設定。
+        # to : scale Widgetの値に上限を設定。
+        # resolution : scale Widgetの値更新の大きさを設定。
+        # orient : scale Widgetの表示方向を設定。水平方向。
+        # command : scale Widgetの値が変更された場合に、実行する関数を設定。self.draw_plotとする。
+        # Scaleについて : https://kuroro.blog/python/DUvG7YaE2i6jLwCxdPXJ/
+        self.x_scale = tk.Scale(controlFrame, from_=1.0, to=10.0, resolution=0.01, orient=tk.HORIZONTAL, command=self.draw_plot)
+        # frame Widget(Frame)を親要素として、scale Widgetをどのように配置するのか?
+        # packについて : https://kuroro.blog/python/UuvLfIBIEaw98BzBZ3FJ/
+        self.x_scale.pack(anchor=tk.NW)
 
-        # # frame Widget(Frame)を親要素として、scale Widgetを作成する。
-        # # from_ : scale Widgetの値に下限を設定。
-        # # to : scale Widgetの値に上限を設定。
-        # # resolution : scale Widgetの値更新の大きさを設定。
-        # # orient : scale Widgetの表示方向を設定。水平方向。
-        # # command : scale Widgetの値が変更された場合に、実行する関数を設定。self.draw_plotとする。
-        # # Scaleについて : https://kuroro.blog/python/DUvG7YaE2i6jLwCxdPXJ/
-        # self.y_scale = tk.Scale(controlFrame, from_=1.0, to=10.0, resolution=0.01, orient=tk.HORIZONTAL, command=self.draw_plot)
-        # # frame Widget(Frame)を親要素として、scale Widgetをどのように配置するのか?
-        # # packについて : https://kuroro.blog/python/UuvLfIBIEaw98BzBZ3FJ/
-        # self.y_scale.pack(anchor=tk.NW)
+        # frame Widget(Frame)を親要素として、scale Widgetを作成する。
+        # from_ : scale Widgetの値に下限を設定。
+        # to : scale Widgetの値に上限を設定。
+        # resolution : scale Widgetの値更新の大きさを設定。
+        # orient : scale Widgetの表示方向を設定。水平方向。
+        # command : scale Widgetの値が変更された場合に、実行する関数を設定。self.draw_plotとする。
+        # Scaleについて : https://kuroro.blog/python/DUvG7YaE2i6jLwCxdPXJ/
+        self.y_scale = tk.Scale(controlFrame, from_=1.0, to=10.0, resolution=0.01, orient=tk.HORIZONTAL, command=self.draw_plot)
+        # frame Widget(Frame)を親要素として、scale Widgetをどのように配置するのか?
+        # packについて : https://kuroro.blog/python/UuvLfIBIEaw98BzBZ3FJ/
+        self.y_scale.pack(anchor=tk.NW)
 
         self.draw_plot()
 
-    # Tkinter内へMatplotlibライブラリで作成したグラフの描画を行う。
+    # Matplotlibライブラリで作成したグラフをTkinter内で描画する。
     # リサジュー図形について : https://kagakunojikan.net/math/lissajous_figure_and_irrational_number/
     def draw_plot(self, event=None):
         # scale Widgetの値を取得する。
-        # v = self.x_scale.get()
-        # # scale Widgetの値を取得する。
-        # w = self.y_scale.get()
-        v = 1
-        w = 1
+        v = self.x_scale.get()
+        # scale Widgetの値を取得する。
+        w = self.y_scale.get()
         # 0(0)~6.28(2π)までのリストを取得する。sin, cosの値を取得する。
         # 参考 : https://note.nkmk.me/python-numpy-arange-linspace/
         t = np.arange(0.0, 6.29, 0.01)
@@ -93,12 +91,13 @@ if __name__ == "__main__":
     ax.set_xlim(-1.2, 1.2)
     # y軸の値の範囲を設定。
     ax.set_ylim(-1.2, 1.2)
-    # (x座標, y座標)のリスト値を設定。
+    # (x座標, y座標)のリスト値を元に、プロットする。
+    # プロットとは? : 点をうつこと。
     # 色の設定。
     h, = ax.plot([],[], 'purple')
     ################################################
 
-    # Windowを生成する。
+    # Windowを作成する。
     # Windowについて : https://kuroro.blog/python/116yLvTkzH2AUJj8FHLx/
     root = tk.Tk()
     app = Application(master=root)
